@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a Question
+    url: https://github.com/rudra496/spark/discussions
+    about: Use Discussions for questions and ideas
+  - name: Support
+    url: https://github.com/rudra496/spark/blob/main/SUPPORT.md
+    about: Read the support guide
