@@ -47,16 +47,16 @@ spark version
 
 ## CLI Commands
 
-| Command | Description |
-|---|---|
-| `spark validate --root <path>` | Check required files are present |
-| `spark assess --root <path>` | Score and summarize repository maturity |
-| `spark discover --root <path>` | Output repository metadata as JSON |
-| `spark scaffold --root <path> --name X --description Y` | Create `spark.json` manifest |
-| `spark health --root <path>` | Quick healthy/unhealthy check |
-| `spark locales` | List supported i18n locales |
-| `spark integration-links --owner X --repo Y` | Generate GitHub community links |
-| `spark version` | Print installed version |
+| Command                                                 | Description                             |
+| ------------------------------------------------------- | --------------------------------------- |
+| `spark validate --root <path>`                          | Check required files are present        |
+| `spark assess --root <path>`                            | Score and summarize repository maturity |
+| `spark discover --root <path>`                          | Output repository metadata as JSON      |
+| `spark scaffold --root <path> --name X --description Y` | Create `spark.json` manifest            |
+| `spark health --root <path>`                            | Quick healthy/unhealthy check           |
+| `spark locales`                                         | List supported i18n locales             |
+| `spark integration-links --owner X --repo Y`            | Generate GitHub community links         |
+| `spark version`                                         | Print installed version                 |
 
 All commands support `--json` for machine-readable output (where applicable).
 
@@ -104,16 +104,16 @@ manifest_path = scaffold_manifest(
 
 ## Features
 
-| Feature | Description |
-|---|---|
-| ⚡ **Zero Bloat** | Pure Python standard library — no runtime dependencies |
-| 🔌 **Plugin System** | Extend validation with custom `SparkPlugin` implementations |
-| 🧩 **Integration Registry** | Register named handler functions for ecosystem extensions |
-| 🌐 **i18n Ready** | English, Spanish, French built-in; easy to extend |
-| 📊 **Maturity Scoring** | 0–100 score with actionable strengths and recommendations |
-| 🛡️ **Input Validation** | `SparkValidationError` for clear, typed error handling |
-| 🏷️ **Badge Helpers** | One-call badge URL generation for README shields |
-| 🎯 **Type Safe** | Full `mypy` strict-compatible type annotations |
+| Feature                     | Description                                                 |
+| --------------------------- | ----------------------------------------------------------- |
+| ⚡ **Zero Bloat**           | Pure Python standard library — no runtime dependencies      |
+| 🔌 **Plugin System**        | Extend validation with custom `SparkPlugin` implementations |
+| 🧩 **Integration Registry** | Register named handler functions for ecosystem extensions   |
+| 🌐 **i18n Ready**           | English, Spanish, French built-in; easy to extend           |
+| 📊 **Maturity Scoring**     | 0–100 score with actionable strengths and recommendations   |
+| 🛡️ **Input Validation**     | `SparkValidationError` for clear, typed error handling      |
+| 🏷️ **Badge Helpers**        | One-call badge URL generation for README shields            |
+| 🎯 **Type Safe**            | Full `mypy` strict-compatible type annotations              |
 
 ---
 
@@ -130,4 +130,4 @@ manifest_path = scaffold_manifest(
 
 ---
 
-*Made with ❤️ by [@rudra496](https://github.com/rudra496) and [contributors](https://github.com/rudra496/spark/graphs/contributors)*
+_Made with ❤️ by [@rudra496](https://github.com/rudra496) and [contributors](https://github.com/rudra496/spark/graphs/contributors)_

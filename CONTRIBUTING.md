@@ -105,16 +105,16 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ### Types
 
-| Type | When to use |
-|---|---|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `docs` | Documentation changes |
-| `style` | Formatting, missing semicolons, etc. |
+| Type       | When to use                                  |
+| ---------- | -------------------------------------------- |
+| `feat`     | New feature                                  |
+| `fix`      | Bug fix                                      |
+| `docs`     | Documentation changes                        |
+| `style`    | Formatting, missing semicolons, etc.         |
 | `refactor` | Code restructuring without changing behavior |
-| `test` | Adding or updating tests |
-| `chore` | Maintenance tasks, dependency updates |
-| `ci` | CI/CD pipeline changes |
+| `test`     | Adding or updating tests                     |
+| `chore`    | Maintenance tasks, dependency updates        |
+| `ci`       | CI/CD pipeline changes                       |
 
 ### Examples
 
