@@ -15,7 +15,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/rudra496/spark?style=social)](https://github.com/rudra496/spark/network/members)
 [![Contributors](https://img.shields.io/github/contributors/rudra496/spark)](https://github.com/rudra496/spark/graphs/contributors)
 
-[**Getting Started**](#-getting-started) · [**Features**](#-features) · [**Examples**](#-examples) · [**Docs**](https://rudra496.github.io/spark/) · [**API**](docs/API.md) · [**Roadmap**](ROADMAP.md) · [**Contributing**](CONTRIBUTING.md)
+[**Getting Started**](#getting-started) · [**Features**](#features) · [**Examples**](#examples) · [**Docs**](https://rudra496.github.io/spark/) · [**API**](docs/API.md) · [**Roadmap**](ROADMAP.md) · [**Contributing**](CONTRIBUTING.md)
 
 </div>
 
@@ -33,21 +33,21 @@ Whether you're prototyping a weekend project, building a production system, or c
 
 ## 🚀 Features
 
-| Feature | Description |
-|---|---|
-| ⚡ **Zero Bloat** | Pure Python standard library — no runtime dependencies |
-| 🔌 **Stack-Agnostic** | Works with any language, framework, or runtime |
-| 🛡️ **Security-First** | Responsible disclosure process and dependency hygiene built in |
+| Feature                 | Description                                                        |
+| ----------------------- | ------------------------------------------------------------------ |
+| ⚡ **Zero Bloat**       | Pure Python standard library — no runtime dependencies             |
+| 🔌 **Stack-Agnostic**   | Works with any language, framework, or runtime                     |
+| 🛡️ **Security-First**   | Responsible disclosure process and dependency hygiene built in     |
 | 🤝 **Community-Driven** | Open governance, clear contribution paths, and welcoming community |
-| 📦 **Release-Ready** | Semantic versioning, automated changelogs, and CI/CD workflows |
-| 📚 **Well-Documented** | Architecture docs, examples, FAQ, and a live docs site |
-| 🧩 **Extensible** | Plugin manager and integration registry for ecosystem growth |
-| 🌐 **i18n Ready** | Built-in message localization in English, Spanish, and French |
-| 🎯 **Maturity Scoring** | 0–100 score with concrete strengths and recommendations |
-| 🏷️ **Badge Helpers** | One-call generation of README badge URLs |
-| 🔍 **Smart Discovery** | Language detection, license detection, test count and more |
-| 🩺 **Health Check** | Single `spark health` command for CI-friendly status |
-| 🎨 **Type Safe** | Full `mypy`-compatible annotations throughout |
+| 📦 **Release-Ready**    | Semantic versioning, automated changelogs, and CI/CD workflows     |
+| 📚 **Well-Documented**  | Architecture docs, examples, FAQ, and a live docs site             |
+| 🧩 **Extensible**       | Plugin manager and integration registry for ecosystem growth       |
+| 🌐 **i18n Ready**       | Built-in message localization in English, Spanish, and French      |
+| 🎯 **Maturity Scoring** | 0–100 score with concrete strengths and recommendations            |
+| 🏷️ **Badge Helpers**    | One-call generation of README badge URLs                           |
+| 🔍 **Smart Discovery**  | Language detection, license detection, test count and more         |
+| 🩺 **Health Check**     | Single `spark health` command for CI-friendly status               |
+| 🎨 **Type Safe**        | Full `mypy`-compatible annotations throughout                      |
 
 ---
 
@@ -182,11 +182,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for full details including code style, co
 
 ## 💬 Community & Support
 
-| Channel | Purpose |
-|---|---|
-| [GitHub Issues](https://github.com/rudra496/spark/issues) | Bug reports, feature requests |
+| Channel                                                             | Purpose                         |
+| ------------------------------------------------------------------- | ------------------------------- |
+| [GitHub Issues](https://github.com/rudra496/spark/issues)           | Bug reports, feature requests   |
 | [GitHub Discussions](https://github.com/rudra496/spark/discussions) | Questions, ideas, show-and-tell |
-| [SUPPORT.md](SUPPORT.md) | Where to get help |
+| [SUPPORT.md](SUPPORT.md)                                            | Where to get help               |
 
 We follow the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). Please be kind and constructive.
 
@@ -221,6 +221,6 @@ If Spark has been useful to you:
 
 Made with ❤️ by [@rudra496](https://github.com/rudra496) and [contributors](https://github.com/rudra496/spark/graphs/contributors)
 
-**[⬆ Back to top](#-spark)**
+**[⬆ Back to top](#spark)**
 
 </div>
