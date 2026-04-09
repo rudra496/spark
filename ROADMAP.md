@@ -28,5 +28,5 @@
 ## How to Influence the Roadmap
 
 Open a [feature request](https://github.com/rudra496/spark/issues/new?template=feature_request.yml)
-or start a [Discussion](https://github.com/rudra496/spark/discussions).
-Upvoted ideas get prioritized.
+or start a [Discussion](https://github.com/rudra496/spark/discussions)
+to share your ideas. Upvoted ideas get prioritized.
