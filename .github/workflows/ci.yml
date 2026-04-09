@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run markdown lint
+        uses: avto-dev/markdown-lint@v1
+        with:
+          args: '**/*.md'
+
+  validate:
+    name: Validate required files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required markdown files exist and are non-empty
+        run: |
+          set -euo pipefail
+          files=(
+            README.md
+            CONTRIBUTING.md
+            CODE_OF_CONDUCT.md
+            SECURITY.md
+            SUPPORT.md
+            CHANGELOG.md
+            ROADMAP.md
+            docs/ARCHITECTURE.md
+            docs/FAQ.md
+            docs/SHOWCASE.md
+            examples/README.md
+          )
+          for f in "${files[@]}"; do
+            if [ ! -s "$f" ]; then
+              echo "Missing or empty required file: $f"
+              exit 1
+            fi
+          done
+          echo "All required files are present and non-empty."
