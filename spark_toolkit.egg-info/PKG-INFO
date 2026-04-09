@@ -1,3 +1,21 @@
+Metadata-Version: 2.4
+Name: spark-toolkit
+Version: 0.1.0
+Summary: Lightweight toolkit for OSS project foundations
+Author: rudra496
+License: MIT
+Keywords: spark,toolkit,oss,project-template,validation
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
 <div align="center">
 
 <img src="https://raw.githubusercontent.com/rudra496/spark/main/docs/assets/logo.svg" alt="Spark Logo" width="120" height="120" />

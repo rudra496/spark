@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Spark v0.1 core toolkit (`spark.core`) with repository validation, discovery, and manifest scaffolding
 - Plugin management and required-files plugin (`spark.plugins`)
 - Integration registry and GitHub links integration (`spark.integrations`)
@@ -24,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Python packaging metadata and console-script entrypoint (`pyproject.toml`)
 
 ### Changed
+
 - CI workflow now runs Python tests in addition to markdown lint and required-file validation
 - CI required-file checks now include `pyproject.toml`
 - Release workflow now has preflight checks (tests + changelog/tag consistency) before publishing
@@ -32,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2024-04-08
 
 ### Added
+
 - Repository foundation: README, LICENSE, CONTRIBUTING, CODE_OF_CONDUCT
 - Community templates: issue forms, PR template, CODEOWNERS
 - Documentation structure: ARCHITECTURE, FAQ, SHOWCASE

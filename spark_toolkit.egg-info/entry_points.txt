@@ -1,0 +1,2 @@
+[console_scripts]
+spark = spark.cli:main
