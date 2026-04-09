@@ -36,6 +36,18 @@ class ValidationReport:
         return len(self.missing_paths) == 0
 
 
+@dataclass(frozen=True)
+class AssessmentReport:
+    """High-level maturity assessment for a Spark-style repository."""
+
+    root: Path
+    score: int
+    summary: str
+    strengths: tuple[str, ...]
+    recommendations: tuple[str, ...]
+    missing_required_paths: tuple[str, ...]
+
+
 class SparkProject:
     """Represents a Spark-style repository on disk."""
 
@@ -61,6 +73,56 @@ class SparkProject:
     def run_plugins(self, manager: PluginManager) -> dict[str, dict[str, Any]]:
         context = {"root": self.root}
         return manager.run(context)
+
+    def assess(self) -> AssessmentReport:
+        validation = self.validate()
+        discovery = self.discover()
+        score = 100
+        strengths: list[str] = []
+        recommendations: list[str] = []
+
+        if validation.is_valid:
+            strengths.append("All required foundation files are present.")
+        else:
+            score -= min(40, len(validation.missing_paths) * 4)
+            recommendations.append("Add missing required foundation files.")
+
+        if discovery["workflow_count"] > 0:
+            strengths.append("Automation workflows are configured.")
+        else:
+            score -= 20
+            recommendations.append("Add CI workflow automation in .github/workflows.")
+
+        if discovery["docs_count"] >= 5:
+            strengths.append("Documentation depth is solid.")
+        else:
+            score -= 20
+            recommendations.append("Expand docs coverage (architecture, API, FAQ, guides).")
+
+        if discovery["example_count"] >= 3:
+            strengths.append("Example coverage helps adoption.")
+        else:
+            score -= 20
+            recommendations.append("Add more runnable examples for common use-cases.")
+
+        score = max(0, min(100, score))
+        if score >= 90:
+            summary = "Excellent repository foundation."
+        elif score >= 75:
+            summary = "Strong repository foundation with room to improve."
+        elif score >= 50:
+            summary = "Moderate repository maturity; prioritize improvements."
+        else:
+            summary = "Early-stage repository foundation; major improvements needed."
+
+        return AssessmentReport(
+            root=self.root,
+            score=score,
+            summary=summary,
+            strengths=tuple(strengths),
+            recommendations=tuple(recommendations),
+            missing_required_paths=validation.missing_paths,
+        )
 
 
 def scaffold_manifest(

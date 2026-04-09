@@ -13,7 +13,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/rudra496/spark?style=social)](https://github.com/rudra496/spark/network/members)
 [![Contributors](https://img.shields.io/github/contributors/rudra496/spark)](https://github.com/rudra496/spark/graphs/contributors)
 
-[**Getting Started**](#-getting-started) · [**Features**](#-features) · [**Examples**](#-examples) · [**Docs**](docs/) · [**Roadmap**](ROADMAP.md) · [**Contributing**](CONTRIBUTING.md)
+[**Getting Started**](#-getting-started) · [**Features**](#-features) · [**Examples**](#-examples) · [**Docs**](docs/) · [**Innovation**](docs/INNOVATION.md) · [**Roadmap**](ROADMAP.md) · [**Contributing**](CONTRIBUTING.md)
 
 </div>
 
@@ -41,6 +41,7 @@ Whether you're prototyping a weekend project, building a production system, or c
 | 📚 **Well-Documented** | Architecture docs, examples, FAQ, and a showcase |
 | 🧩 **Extensible** | Plugin manager and integration registry for ecosystem growth |
 | 🌐 **i18n Ready** | Built-in message localization helpers |
+| 🎯 **Actionable Assessment** | Maturity scoring with concrete recommendations to improve quality |
 | 🌱 **Growth-Oriented** | Built with onboarding, discoverability, and long-term growth in mind |
 
 ---
@@ -84,6 +85,7 @@ python3 examples/basic-usage/example.py
 # 4. Run CLI commands
 python3 -m spark validate --root .
 python3 -m spark discover --root .
+python3 -m spark assess --root .
 ```
 
 ---
@@ -135,6 +137,7 @@ Spark includes a CLI for daily operations:
 ```bash
 python3 -m spark validate --root .
 python3 -m spark discover --root .
+python3 -m spark assess --root . --json
 python3 -m spark locales
 python3 -m spark integration-links --owner rudra496 --repo spark
 python3 -m spark scaffold --root . --name spark --description "Toolkit repo"

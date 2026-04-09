@@ -44,6 +44,43 @@ class SparkProjectTests(unittest.TestCase):
             self.assertEqual(payload["name"], "demo")
             self.assertEqual(payload["version"], "0.2.0")
 
+    def test_assess_reports_recommendations_for_sparse_repo(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "README.md").write_text("ok", encoding="utf-8")
+            report = SparkProject(root).assess()
+            self.assertLess(report.score, 100)
+            self.assertGreater(len(report.recommendations), 0)
+            self.assertIn("CONTRIBUTING.md", report.missing_required_paths)
+
+    def test_assess_reports_excellent_for_complete_repo(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            for rel in (
+                "README.md",
+                "CONTRIBUTING.md",
+                "CODE_OF_CONDUCT.md",
+                "SECURITY.md",
+                "SUPPORT.md",
+                "CHANGELOG.md",
+                "ROADMAP.md",
+                "docs/ARCHITECTURE.md",
+                "docs/FAQ.md",
+                "docs/SHOWCASE.md",
+                "docs/API.md",
+                "docs/I18N.md",
+                "examples/README.md",
+                "examples/basic.md",
+                "examples/advanced.md",
+                ".github/workflows/ci.yml",
+            ):
+                target = root / rel
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text("ok", encoding="utf-8")
+            report = SparkProject(root).assess()
+            self.assertEqual(report.score, 100)
+            self.assertEqual(report.recommendations, ())
+
 
 if __name__ == "__main__":
     unittest.main()

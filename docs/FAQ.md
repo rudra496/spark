@@ -53,3 +53,6 @@ Yes. Use `python3 -m spark` and see command examples in `README.md`.
 
 ## 18) How can I prepare a production release safely?
 Use semantic tags (`v*.*.*`), ensure CHANGELOG includes the tag section, and rely on the release workflow preflight checks.
+
+## 19) How do I get improvement suggestions for my repository?
+Run `python3 -m spark assess --root .` (or add `--json` for automation-friendly output).

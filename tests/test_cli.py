@@ -71,6 +71,15 @@ class CLITests(unittest.TestCase):
             self.assertEqual(code, 0)
             self.assertTrue((Path(temp_dir) / "spark.json").exists())
 
+    def test_assess_json(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out = io.StringIO()
+            code = run(["assess", "--root", temp_dir, "--json"], stdout=out, stderr=io.StringIO())
+            payload = json.loads(out.getvalue())
+            self.assertEqual(code, 0)
+            self.assertIn("score", payload)
+            self.assertIn("recommendations", payload)
+
     def test_locales_lists_supported_locales(self) -> None:
         out = io.StringIO()
         code = run(["locales"], stdout=out, stderr=io.StringIO())

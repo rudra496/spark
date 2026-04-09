@@ -5,12 +5,20 @@
 - `SparkProject(root)`
   - `validate(required_paths: tuple[str, ...] | None = None) -> ValidationReport`
   - `discover() -> dict[str, Any]`
+  - `assess() -> AssessmentReport`
   - `run_plugins(manager: PluginManager) -> dict[str, dict[str, Any]]`
 - `scaffold_manifest(root, name, description, version="0.1.0") -> Path`
 - `ValidationReport`
   - `root: Path`
   - `missing_paths: tuple[str, ...]`
   - `is_valid: bool`
+- `AssessmentReport`
+  - `root: Path`
+  - `score: int`
+  - `summary: str`
+  - `strengths: tuple[str, ...]`
+  - `recommendations: tuple[str, ...]`
+  - `missing_required_paths: tuple[str, ...]`
 
 ## `spark.plugins`
 
@@ -43,5 +51,6 @@
 - `spark validate --root <path> [--json]`
 - `spark discover --root <path>`
 - `spark scaffold --root <path> --name <name> --description <text> [--version <v>]`
+- `spark assess --root <path> [--json]`
 - `spark locales`
 - `spark integration-links --owner <org-or-user> --repo <repo>`
