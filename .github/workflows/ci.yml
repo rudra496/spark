@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run markdown lint
+        uses: avto-dev/markdown-lint@v1
+        with:
+          args: '**/*.md'
+
+  test:
+    name: Python Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run unit and integration tests
+        run: |
+          python -m unittest discover -s tests -p "test_*.py"
+
+  validate:
+    name: Validate required files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required markdown files exist and are non-empty
+        run: |
+          set -euo pipefail
+          files=(
+            README.md
+            pyproject.toml
+            CONTRIBUTING.md
+            CODE_OF_CONDUCT.md
+            SECURITY.md
+            SUPPORT.md
+            CHANGELOG.md
+            ROADMAP.md
+            docs/ARCHITECTURE.md
+            docs/API.md
+            docs/FAQ.md
+            docs/SHOWCASE.md
+            examples/README.md
+          )
+          for f in "${files[@]}"; do
+            if [ ! -s "$f" ]; then
+              echo "Missing or empty required file: $f"
+              exit 1
+            fi
+          done
+          echo "All required files are present and non-empty."
