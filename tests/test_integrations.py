@@ -23,6 +23,14 @@ class IntegrationRegistryTests(unittest.TestCase):
         with self.assertRaises(KeyError):
             registry.run("missing")
 
+    def test_github_links_rejects_empty_owner(self) -> None:
+        with self.assertRaises(ValueError):
+            github_links_integration("", "spark")
+
+    def test_github_links_rejects_empty_repo(self) -> None:
+        with self.assertRaises(ValueError):
+            github_links_integration("rudra496", "   ")
+
 
 if __name__ == "__main__":
     unittest.main()

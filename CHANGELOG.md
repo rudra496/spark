@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - API docs consistency smoke test (`tests/test_docs_api.py`)
 - Core tests for `.yaml` workflow discovery and runnable example counting semantics
 - CLI regression test ensuring `health` succeeds for `.yaml` workflow repositories
+- Integration input validation tests for blank owner/repo values
 
 ### Changed
 
@@ -27,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Docs deploy workflow now runs `mkdocs build --strict` before deployment and validates homepage reachability
 - Release preflight now builds package artifacts and verifies wheel install/import
 - README docs URL converted to a Markdown link for markdown-lint compatibility
+- `github_links_integration()` now rejects blank owner/repo values and CLI surfaces validation errors cleanly
 
 ## [0.2.0] - 2025-04-09
 

@@ -123,7 +123,11 @@ def run(
         return 0
 
     if args.command == "integration-links":
-        out.write(json.dumps(github_links_integration(args.owner, args.repo)) + "\n")
+        try:
+            out.write(json.dumps(github_links_integration(args.owner, args.repo)) + "\n")
+        except ValueError as exc:
+            err.write(f"Error: {exc}\n")
+            return 1
         return 0
 
     if args.command == "version":

@@ -31,6 +31,13 @@ class IntegrationRegistry:
 
 def github_links_integration(owner: str, repo: str) -> dict[str, Any]:
     """Example integration for generating GitHub community links."""
+    if not owner or not owner.strip():
+        raise ValueError("GitHub owner must not be empty.")
+    if not repo or not repo.strip():
+        raise ValueError("GitHub repository must not be empty.")
+
+    owner = owner.strip()
+    repo = repo.strip()
     base = f"https://github.com/{owner}/{repo}"
     return {
         "issues": f"{base}/issues",

@@ -123,6 +123,16 @@ class CLITests(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertEqual(payload["issues"], "https://github.com/rudra496/spark/issues")
 
+    def test_integration_links_rejects_blank_inputs(self) -> None:
+        err = io.StringIO()
+        code = run(
+            ["integration-links", "--owner", " ", "--repo", "spark"],
+            stdout=io.StringIO(),
+            stderr=err,
+        )
+        self.assertEqual(code, 1)
+        self.assertIn("Error:", err.getvalue())
+
     def test_version_command(self) -> None:
         out = io.StringIO()
         code = run(["version"], stdout=out, stderr=io.StringIO())
