@@ -155,6 +155,33 @@ class CLITests(unittest.TestCase):
             payload = json.loads(out.getvalue())
             self.assertEqual(code, 0)
             self.assertTrue(payload["healthy"])
+            self.assertTrue(payload["has_workflows"])
+
+    def test_health_healthy_repo_with_yaml_workflow(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            for rel in (
+                "README.md",
+                "CONTRIBUTING.md",
+                "CODE_OF_CONDUCT.md",
+                "SECURITY.md",
+                "SUPPORT.md",
+                "CHANGELOG.md",
+                "ROADMAP.md",
+                "docs/ARCHITECTURE.md",
+                "docs/FAQ.md",
+                "docs/SHOWCASE.md",
+                "examples/README.md",
+                ".github/workflows/ci.yaml",
+            ):
+                target = root / rel
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text("ok", encoding="utf-8")
+            out = io.StringIO()
+            code = run(["health", "--root", str(root), "--json"], stdout=out, stderr=io.StringIO())
+            payload = json.loads(out.getvalue())
+            self.assertEqual(code, 0)
+            self.assertTrue(payload["healthy"])
 
     def test_health_unhealthy_repo(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
