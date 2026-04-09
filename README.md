@@ -64,6 +64,11 @@ cd spark
 # Or use as a template — click "Use this template" on GitHub
 ```
 
+```bash
+# Optional: install CLI locally
+pip install -e .
+```
+
 ### Quick Start
 
 ```bash
@@ -75,6 +80,10 @@ python3 -m unittest discover -s tests -p "test_*.py"
 
 # 3. Run a sample
 python3 examples/basic-usage/example.py
+
+# 4. Run CLI commands
+python3 -m spark validate --root .
+python3 -m spark discover --root .
 ```
 
 ---
@@ -116,6 +125,20 @@ spark/
 ```
 
 👉 [Full architecture documentation →](docs/ARCHITECTURE.md)
+
+---
+
+## 🧰 CLI
+
+Spark includes a CLI for daily operations:
+
+```bash
+python3 -m spark validate --root .
+python3 -m spark discover --root .
+python3 -m spark locales
+python3 -m spark integration-links --owner rudra496 --repo spark
+python3 -m spark scaffold --root . --name spark --description "Toolkit repo"
+```
 
 ---
 

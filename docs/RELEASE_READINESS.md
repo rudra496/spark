@@ -11,4 +11,6 @@ This checklist tracks readiness for a stable `v1.0.0` tag.
 - [x] Runnable examples added (`examples/`)
 - [x] Benchmark entrypoint added (`benchmarks/benchmark_validation.py`)
 - [x] CI runs docs/file checks and Python tests
+- [x] CLI interface added (`python3 -m spark ...`)
+- [x] Release workflow preflight validates tests and changelog/tag consistency
 - [ ] Tag and publish `v1.0.0` release

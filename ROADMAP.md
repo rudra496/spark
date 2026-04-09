@@ -14,7 +14,7 @@
 ## Phase 3 — Ecosystem (Q3 2024)
 - [x] Integration examples
 - [x] Plugin/extension support
-- [ ] First stable release (v1.0) — release checklist prepared in `docs/RELEASE_READINESS.md`
+- [ ] First stable release (v1.0) — release preflight automation added; final tagging remains
 
 ## Phase 4 — Scale (Q4 2024+)
 - [x] Internationalization

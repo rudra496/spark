@@ -47,3 +47,9 @@ Yes. Use `spark.plugins.PluginManager` and `spark.integrations.IntegrationRegist
 
 ## 16) Does Spark support multiple languages for messages?
 Yes. See `spark.i18n` and `docs/I18N.md`.
+
+## 17) Is there a command-line interface?
+Yes. Use `python3 -m spark` and see command examples in `README.md`.
+
+## 18) How can I prepare a production release safely?
+Use semantic tags (`v*.*.*`), ensure CHANGELOG includes the tag section, and rely on the release workflow preflight checks.

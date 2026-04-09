@@ -50,6 +50,7 @@ jobs:
           set -euo pipefail
           files=(
             README.md
+            pyproject.toml
             CONTRIBUTING.md
             CODE_OF_CONDUCT.md
             SECURITY.md

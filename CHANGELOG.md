@@ -12,13 +12,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Plugin management and required-files plugin (`spark.plugins`)
 - Integration registry and GitHub links integration (`spark.integrations`)
 - i18n helpers with English and Spanish locales (`spark.i18n`)
+- CLI module with validate/discover/scaffold/locales/integration-links commands (`spark.cli`)
 - Unit and integration test suite under `tests/`
+- CLI test suite for command behavior and edge cases (`tests/test_cli.py`)
 - API, i18n, benchmark, and release-readiness docs
 - Runnable examples under `examples/basic-usage`, `examples/advanced-config`, and `examples/integrations`
 - Benchmark entrypoint at `benchmarks/benchmark_validation.py`
+- Python packaging metadata and console-script entrypoint (`pyproject.toml`)
 
 ### Changed
 - CI workflow now runs Python tests in addition to markdown lint and required-file validation
+- CI required-file checks now include `pyproject.toml`
+- Release workflow now has preflight checks (tests + changelog/tag consistency) before publishing
 
 ## [0.1.0] - 2024-04-08
 
