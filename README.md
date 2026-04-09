@@ -39,6 +39,8 @@ Whether you're prototyping a weekend project, building a production system, or c
 | 🤝 **Community-Driven** | Open governance, clear contribution paths, and welcoming community |
 | 📦 **Release-Ready** | Semantic versioning, automated changelogs, and CI/CD workflows |
 | 📚 **Well-Documented** | Architecture docs, examples, FAQ, and a showcase |
+| 🧩 **Extensible** | Plugin manager and integration registry for ecosystem growth |
+| 🌐 **i18n Ready** | Built-in message localization helpers |
 | 🌱 **Growth-Oriented** | Built with onboarding, discoverability, and long-term growth in mind |
 
 ---
@@ -68,11 +70,11 @@ cd spark
 # 1. Clone and enter the project
 git clone https://github.com/rudra496/spark.git && cd spark
 
-# 2. Explore the examples
-ls examples/
+# 2. Run the test suite
+python3 -m unittest discover -s tests -p "test_*.py"
 
-# 3. Read the docs
-cat docs/ARCHITECTURE.md
+# 3. Run a sample
+python3 examples/basic-usage/example.py
 ```
 
 ---
@@ -83,9 +85,9 @@ Check out [`examples/`](examples/) for real-world usage patterns.
 
 ```text
 examples/
-├── basic-usage/       # Minimal working example
-├── advanced-config/   # Configuration deep-dive
-└── integrations/      # How Spark plays with other tools
+├── basic-usage/       # Validate a repository with defaults
+├── advanced-config/   # Custom validation + discovery
+└── integrations/      # Register and run integrations
 ```
 
 👉 [Browse all examples →](examples/README.md)
@@ -102,8 +104,11 @@ Spark is organized around three core principles:
 
 ```
 spark/
-├── docs/              # Architecture, FAQ, Showcase
-├── examples/          # Usage examples
+├── spark/             # Core toolkit modules (core/plugins/i18n/integrations)
+├── tests/             # Unit and integration tests
+├── docs/              # Architecture, API, FAQ, I18N, release readiness
+├── examples/          # Runnable usage examples
+├── benchmarks/        # Baseline performance scripts
 ├── .github/           # Workflows, templates, community files
 ├── CONTRIBUTING.md    # How to contribute
 ├── ROADMAP.md         # Where we're going
@@ -121,10 +126,10 @@ Here's a preview of what's coming. See [ROADMAP.md](ROADMAP.md) for the full pla
 - [x] 🏗️ Repository foundation and community setup
 - [x] 📄 Docs structure (Architecture, FAQ, Showcase)
 - [x] 🤖 CI/CD workflows
-- [ ] 🔌 Core feature set (v0.1)
+- [x] 🔌 Core feature set (v0.1)
 - [ ] 📦 First stable release (v1.0)
-- [ ] 🌍 Internationalization support
-- [ ] 🔗 Integrations ecosystem
+- [x] 🌍 Internationalization support
+- [x] 🔗 Integrations ecosystem
 
 ---
 

@@ -25,10 +25,25 @@ spark/
 │   └── pull_request_template.md
 ├── docs/
 │   ├── ARCHITECTURE.md
+│   ├── API.md
 │   ├── FAQ.md
+│   ├── I18N.md
+│   ├── RELEASE_READINESS.md
 │   └── SHOWCASE.md
 ├── examples/
-│   └── README.md
+│   ├── README.md
+│   ├── basic-usage/
+│   ├── advanced-config/
+│   └── integrations/
+├── benchmarks/
+│   └── benchmark_validation.py
+├── spark/
+│   ├── core.py
+│   ├── plugins.py
+│   ├── integrations.py
+│   └── i18n.py
+├── tests/
+│   └── test_*.py
 ├── CHANGELOG.md
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
@@ -43,6 +58,7 @@ spark/
 
 - `README.md`: first impression, mission, quick start, and navigation
 - `docs/ARCHITECTURE.md`: high-level system and decision context
+- `docs/API.md`: API surface for core toolkit modules
 - `docs/FAQ.md`: repeated questions and onboarding shortcuts
 - `docs/SHOWCASE.md`: real-world project visibility and social proof
 
@@ -55,7 +71,7 @@ spark/
 
 ## Automation Layer
 
-- `ci.yml` runs lightweight checks on push and pull requests
+- `ci.yml` runs markdown lint, required-file validation, and Python tests
 - `release.yml` automates release creation from semantic tags
 
 ## Data / Contribution Flow

@@ -7,18 +7,18 @@
 - [x] Documentation structure
 
 ## Phase 2 — Core Features 🚧 (Q2 2024)
-- [ ] Core feature implementation (v0.1)
-- [ ] Unit and integration tests
-- [ ] API documentation
+- [x] Core feature implementation (v0.1)
+- [x] Unit and integration tests
+- [x] API documentation
 
 ## Phase 3 — Ecosystem (Q3 2024)
-- [ ] Integration examples
-- [ ] Plugin/extension support
-- [ ] First stable release (v1.0)
+- [x] Integration examples
+- [x] Plugin/extension support
+- [ ] First stable release (v1.0) — release checklist prepared in `docs/RELEASE_READINESS.md`
 
 ## Phase 4 — Scale (Q4 2024+)
-- [ ] Internationalization
-- [ ] Performance benchmarks
+- [x] Internationalization
+- [x] Performance benchmarks
 - [ ] Community showcase
 
 ## How to Influence the Roadmap

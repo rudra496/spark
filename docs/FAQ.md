@@ -35,3 +35,15 @@ In `CHANGELOG.md` using Keep a Changelog format.
 
 ## 12) Who reviews changes?
 `@rudra496` is the code owner via `.github/CODEOWNERS`.
+
+## 13) Is there an API reference for Spark modules?
+Yes. See `docs/API.md`.
+
+## 14) Are there runnable examples?
+Yes. See `examples/basic-usage`, `examples/advanced-config`, and `examples/integrations`.
+
+## 15) Does Spark support plugins and integrations?
+Yes. Use `spark.plugins.PluginManager` and `spark.integrations.IntegrationRegistry`.
+
+## 16) Does Spark support multiple languages for messages?
+Yes. See `spark.i18n` and `docs/I18N.md`.

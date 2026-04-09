@@ -2,19 +2,21 @@
 
 This directory contains practical examples for adopting Spark patterns.
 
-## Planned Examples
+## Available Examples
 
-- `basic-usage/` — minimal setup and project flow
-- `advanced-config/` — extended configuration patterns
-- `integrations/` — connecting Spark with external tools/services
+- `basic-usage/` — default project validation
+- `advanced-config/` — custom validation configuration and discovery
+- `integrations/` — integration registry and GitHub link generator
 
 ## Running Examples
 
-Examples are intentionally stack-agnostic. Each example folder should include:
+Run from repository root:
 
-- setup instructions
-- dependencies/prerequisites
-- expected output
+```bash
+python3 examples/basic-usage/example.py
+python3 examples/advanced-config/example.py
+python3 examples/integrations/example.py
+```
 
 ## Contributing Examples
 
