@@ -3,37 +3,37 @@
 ## `spark.core`
 
 - `SparkProject(root)`
-    - `validate(required_paths: tuple[str, ...] | None = None) -> ValidationReport`
-    - `discover() -> dict[str, Any]`
-    - `assess() -> AssessmentReport`
-    - `run_plugins(manager: PluginManager) -> dict[str, dict[str, Any]]`
+  - `validate(required_paths: tuple[str, ...] | None = None) -> ValidationReport`
+  - `discover() -> dict[str, Any]`
+  - `assess() -> AssessmentReport`
+  - `run_plugins(manager: PluginManager) -> dict[str, dict[str, Any]]`
 - `scaffold_manifest(root, name, description, version="0.1.0") -> Path`
 - `ValidationReport`
-    - `root: Path`
-    - `missing_paths: tuple[str, ...]`
-    - `is_valid: bool`
+  - `root: Path`
+  - `missing_paths: tuple[str, ...]`
+  - `is_valid: bool`
 - `AssessmentReport`
-    - `root: Path`
-    - `score: int`
-    - `summary: str`
-    - `strengths: tuple[str, ...]`
-    - `recommendations: tuple[str, ...]`
-    - `missing_required_paths: tuple[str, ...]`
+  - `root: Path`
+  - `score: int`
+  - `summary: str`
+  - `strengths: tuple[str, ...]`
+  - `recommendations: tuple[str, ...]`
+  - `missing_required_paths: tuple[str, ...]`
 
 ## `spark.plugins`
 
 - `PluginManager`
-    - `register(plugin)`
-    - `run(context)`
+  - `register(plugin)`
+  - `run(context)`
 - `RequiredFilesPlugin(required_files)`
-    - `execute(context)`
+  - `execute(context)`
 
 ## `spark.integrations`
 
 - `IntegrationRegistry`
-    - `register(name, handler)`
-    - `run(name, **kwargs)`
-    - `list_integrations()`
+  - `register(name, handler)`
+  - `run(name, **kwargs)`
+  - `list_integrations()`
 - `github_links_integration(owner, repo)`
 
 ## `spark.i18n`
