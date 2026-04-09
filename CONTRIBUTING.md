@@ -66,6 +66,7 @@ git checkout -b feature/your-feature-name
 ```
 
 Use descriptive branch names:
+
 - `feature/add-xyz`
 - `fix/broken-link-in-readme`
 - `docs/improve-architecture-doc`
@@ -94,7 +95,7 @@ git push origin feature/your-feature-name
 
 We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
-```
+```text
 <type>(optional scope): <short description>
 
 [optional body]
@@ -139,6 +140,7 @@ git commit -m "chore: bump dependency versions"
 ### PR Checklist
 
 Before submitting:
+
 - [ ] Code compiles/runs without errors
 - [ ] Relevant documentation is updated
 - [ ] Commit messages follow the convention above
@@ -151,6 +153,7 @@ Before submitting:
 Use the [Bug Report template](https://github.com/rudra496/spark/issues/new?template=bug_report.yml).
 
 A good bug report includes:
+
 - Clear, descriptive title
 - Steps to reproduce (minimal, reproducible example)
 - Expected vs actual behavior
@@ -164,6 +167,7 @@ A good bug report includes:
 Use the [Feature Request template](https://github.com/rudra496/spark/issues/new?template=feature_request.yml).
 
 A good feature request includes:
+
 - The problem you're trying to solve
 - Your proposed solution
 - Alternatives you've considered

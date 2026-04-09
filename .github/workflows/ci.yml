@@ -21,22 +21,7 @@ jobs:
         uses: avto-dev/markdown-lint@v1
         with:
           args: '**/*.md'
-
-  test:
-    name: Python Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Run unit and integration tests
-        run: |
-          python -m unittest discover -s tests -p "test_*.py"
+          config: '.markdownlint.json'
 
   validate:
     name: Validate required files
@@ -45,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Verify required markdown files exist and are non-empty
+      - name: Verify required files exist and are non-empty
         run: |
           set -euo pipefail
           files=(
@@ -65,8 +50,27 @@ jobs:
           )
           for f in "${files[@]}"; do
             if [ ! -s "$f" ]; then
-              echo "Missing or empty required file: $f"
+              echo "❌ Missing or empty required file: $f"
               exit 1
             fi
           done
-          echo "All required files are present and non-empty."
+          echo "✅ All required files are present and non-empty."
+
+  test:
+    name: Python Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -e . --quiet
+
+      - name: Run unit and integration tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v

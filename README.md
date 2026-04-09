@@ -113,7 +113,7 @@ Spark is organized around three core principles:
 2. **Composability** — components combine without friction
 3. **Transparency** — behavior is predictable and well-documented
 
-```
+```text
 spark/
 ├── spark/             # Core toolkit modules (core/plugins/i18n/integrations)
 ├── tests/             # Unit and integration tests
@@ -201,6 +201,7 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fo
 ## 🌟 Show Your Support
 
 If Spark has been useful to you:
+
 - ⭐ **Star this repo** — it helps others discover the project
 - 🍴 **Fork it** — and build something amazing
 - 📣 **Share it** — tell a friend or write about it
