@@ -15,7 +15,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/rudra496/spark?style=social)](https://github.com/rudra496/spark/network/members)
 [![Contributors](https://img.shields.io/github/contributors/rudra496/spark)](https://github.com/rudra496/spark/graphs/contributors)
 
-[**Getting Started**](#-getting-started) · [**Features**](#-features) · [**Examples**](#-examples) · [**Docs**](https://rudra496.github.io/spark/) · [**API**](docs/API.md) · [**Roadmap**](ROADMAP.md) · [**Contributing**](CONTRIBUTING.md)
+[**Getting Started**](#getting-started) · [**Features**](#features) · [**Examples**](#examples) · [**Docs**](https://rudra496.github.io/spark/) · [**API**](docs/API.md) · [**Roadmap**](ROADMAP.md) · [**Contributing**](CONTRIBUTING.md)
 
 </div>
 
@@ -221,6 +221,6 @@ If Spark has been useful to you:
 
 Made with ❤️ by [@rudra496](https://github.com/rudra496) and [contributors](https://github.com/rudra496/spark/graphs/contributors)
 
-**[⬆ Back to top](#-spark)**
+**[⬆ Back to top](#spark)**
 
 </div>
