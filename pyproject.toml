@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "spark-toolkit"
-version = "0.1.0"
+version = "0.2.0"
 description = "Lightweight toolkit for OSS project foundations"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -12,16 +12,45 @@ license = { text = "MIT" }
 authors = [{ name = "rudra496" }]
 keywords = ["spark", "toolkit", "oss", "project-template", "validation"]
 classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Software Development :: Quality Assurance",
 ]
+
+[project.urls]
+Homepage = "https://rudra496.github.io/spark/"
+Documentation = "https://rudra496.github.io/spark/"
+Repository = "https://github.com/rudra496/spark"
+"Bug Tracker" = "https://github.com/rudra496/spark/issues"
+Changelog = "https://github.com/rudra496/spark/blob/main/CHANGELOG.md"
 
 [project.scripts]
 spark = "spark.cli:main"
 
 [tool.setuptools]
 packages = ["spark"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W"]
+ignore = ["B904"]
+
+[tool.mypy]
+python_version = "3.10"
+disallow_untyped_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+ignore_missing_imports = true

@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from spark import __version__
 from spark.cli import run
 
 
@@ -30,7 +31,8 @@ class CLITests(unittest.TestCase):
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text("ok", encoding="utf-8")
             out = io.StringIO()
-            code = run(["validate", "--root", str(root), "--json"], stdout=out, stderr=io.StringIO())
+            err = io.StringIO()
+            code = run(["validate", "--root", str(root), "--json"], stdout=out, stderr=err)
             payload = json.loads(out.getvalue())
             self.assertEqual(code, 0)
             self.assertTrue(payload["valid"])
@@ -42,6 +44,15 @@ class CLITests(unittest.TestCase):
             self.assertEqual(code, 1)
             self.assertIn("missing required files", out.getvalue().lower())
 
+    def test_validate_locale_spanish(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out = io.StringIO()
+            run(
+                ["validate", "--root", temp_dir, "--locale", "es"],
+                stdout=out,
+                stderr=io.StringIO(),
+            )
+            self.assertIn("faltan", out.getvalue().lower())
     def test_discover_returns_json(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             out = io.StringIO()
@@ -49,6 +60,8 @@ class CLITests(unittest.TestCase):
             self.assertEqual(code, 0)
             payload = json.loads(out.getvalue())
             self.assertEqual(Path(payload["root"]), Path(temp_dir).resolve())
+            self.assertIn("has_license", payload)
+            self.assertIn("test_count", payload)
 
     def test_scaffold_creates_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -71,6 +84,17 @@ class CLITests(unittest.TestCase):
             self.assertEqual(code, 0)
             self.assertTrue((Path(temp_dir) / "spark.json").exists())
 
+    def test_scaffold_empty_name_returns_error(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            err = io.StringIO()
+            code = run(
+                ["scaffold", "--root", temp_dir, "--name", "", "--description", "valid"],
+                stdout=io.StringIO(),
+                stderr=err,
+            )
+            self.assertEqual(code, 1)
+            self.assertIn("Error", err.getvalue())
+
     def test_assess_json(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             out = io.StringIO()
@@ -86,6 +110,7 @@ class CLITests(unittest.TestCase):
         payload = json.loads(out.getvalue())
         self.assertEqual(code, 0)
         self.assertIn("en", payload["locales"])
+        self.assertIn("fr", payload["locales"])
 
     def test_integration_links(self) -> None:
         out = io.StringIO()
@@ -97,6 +122,51 @@ class CLITests(unittest.TestCase):
         payload = json.loads(out.getvalue())
         self.assertEqual(code, 0)
         self.assertEqual(payload["issues"], "https://github.com/rudra496/spark/issues")
+
+    def test_version_command(self) -> None:
+        out = io.StringIO()
+        code = run(["version"], stdout=out, stderr=io.StringIO())
+        self.assertEqual(code, 0)
+        self.assertIn(__version__, out.getvalue())
+        self.assertIn("spark", out.getvalue())
+
+    def test_health_healthy_repo(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            for rel in (
+                "README.md",
+                "CONTRIBUTING.md",
+                "CODE_OF_CONDUCT.md",
+                "SECURITY.md",
+                "SUPPORT.md",
+                "CHANGELOG.md",
+                "ROADMAP.md",
+                "docs/ARCHITECTURE.md",
+                "docs/FAQ.md",
+                "docs/SHOWCASE.md",
+                "examples/README.md",
+                ".github/workflows/ci.yml",
+            ):
+                target = root / rel
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text("ok", encoding="utf-8")
+            out = io.StringIO()
+            code = run(["health", "--root", str(root), "--json"], stdout=out, stderr=io.StringIO())
+            payload = json.loads(out.getvalue())
+            self.assertEqual(code, 0)
+            self.assertTrue(payload["healthy"])
+
+    def test_health_unhealthy_repo(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out = io.StringIO()
+            code = run(["health", "--root", temp_dir], stdout=out, stderr=io.StringIO())
+            self.assertEqual(code, 1)
+            self.assertIn("Unhealthy", out.getvalue())
+
+    def test_no_command_returns_help(self) -> None:
+        err = io.StringIO()
+        code = run([], stdout=io.StringIO(), stderr=err)
+        self.assertEqual(code, 2)
 
 
 if __name__ == "__main__":

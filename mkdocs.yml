@@ -1,0 +1,73 @@
+site_name: Spark
+site_description: Lightweight toolkit for OSS project foundations — validate, assess, scaffold, and grow.
+site_url: https://rudra496.github.io/spark/
+repo_url: https://github.com/rudra496/spark
+repo_name: rudra496/spark
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.top
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - API Reference: API.md
+  - Architecture: ARCHITECTURE.md
+  - Internationalization: I18N.md
+  - Innovation: INNOVATION.md
+  - FAQ: FAQ.md
+  - Showcase: SHOWCASE.md
+  - Benchmarks: BENCHMARKS.md
+  - Release Readiness: RELEASE_READINESS.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.inlinehilite
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/rudra496/spark
+  version:
+    provider: mike

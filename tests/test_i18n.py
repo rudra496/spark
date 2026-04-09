@@ -12,8 +12,12 @@ class I18NTests(unittest.TestCase):
         self.assertIn("es", locales)
 
     def test_translate_falls_back_to_en_for_unknown_locale(self) -> None:
-        text = translate("validation_ok", locale="fr")
+        text = translate("validation_ok", locale="de")
         self.assertEqual(text, "Project is valid.")
+
+    def test_translate_french_locale(self) -> None:
+        text = translate("validation_ok", locale="fr")
+        self.assertEqual(text, "Le projet est valide.")
 
     def test_translate_formats_placeholders(self) -> None:
         text = translate("plugin_registered", locale="es", name="demo")

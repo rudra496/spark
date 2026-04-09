@@ -3,3 +3,13 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+.venv/
+.env
+*.egg
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+site/
+*.log
+.DS_Store
+Thumbs.db

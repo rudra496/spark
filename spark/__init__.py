@@ -1,15 +1,26 @@
 """Spark toolkit public API."""
 
-from .core import AssessmentReport, DEFAULT_REQUIRED_PATHS, SparkProject, scaffold_manifest
+from ._version import __version__
+from .cli import run as run_cli
+from .core import (
+    DEFAULT_REQUIRED_PATHS,
+    AssessmentReport,
+    SparkProject,
+    SparkValidationError,
+    ValidationReport,
+    scaffold_manifest,
+)
 from .i18n import available_locales, translate
 from .integrations import IntegrationRegistry
 from .plugins import PluginManager, RequiredFilesPlugin
-from .cli import run as run_cli
 
 __all__ = [
+    "__version__",
     "DEFAULT_REQUIRED_PATHS",
     "AssessmentReport",
+    "ValidationReport",
     "SparkProject",
+    "SparkValidationError",
     "PluginManager",
     "RequiredFilesPlugin",
     "IntegrationRegistry",

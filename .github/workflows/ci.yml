@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  lint:
+  lint-markdown:
     name: Markdown Lint
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +23,7 @@ jobs:
           args: '**/*.md'
           config: '.markdownlint.json'
 
-  validate:
+  validate-files:
     name: Validate required files
     runs-on: ubuntu-latest
     steps:
@@ -56,8 +56,8 @@ jobs:
           done
           echo "✅ All required files are present and non-empty."
 
-  test:
-    name: Python Tests
+  lint-python:
+    name: Python Lint (ruff)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -67,6 +67,47 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install ruff
+        run: pip install ruff --quiet
+
+      - name: Run ruff
+        run: ruff check spark/ tests/
+
+  typecheck:
+    name: Type Check (mypy)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -e . mypy --quiet
+
+      - name: Run mypy
+        run: mypy spark/
+
+  test:
+    name: Python Tests (${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
           cache: 'pip'
 
       - name: Install dependencies

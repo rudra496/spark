@@ -7,13 +7,15 @@
 **The modern, lightweight toolkit that ignites your projects.**
 
 [![CI](https://github.com/rudra496/spark/actions/workflows/ci.yml/badge.svg)](https://github.com/rudra496/spark/actions/workflows/ci.yml)
+[![Docs](https://img.shields.io/badge/docs-live-blue?logo=readthedocs)](https://rudra496.github.io/spark/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue?logo=python)](https://www.python.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![GitHub Stars](https://img.shields.io/github/stars/rudra496/spark?style=social)](https://github.com/rudra496/spark/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/rudra496/spark?style=social)](https://github.com/rudra496/spark/network/members)
 [![Contributors](https://img.shields.io/github/contributors/rudra496/spark)](https://github.com/rudra496/spark/graphs/contributors)
 
-[**Getting Started**](#-getting-started) · [**Features**](#-features) · [**Examples**](#-examples) · [**Docs**](docs/) · [**Innovation**](docs/INNOVATION.md) · [**Roadmap**](ROADMAP.md) · [**Contributing**](CONTRIBUTING.md)
+[**Getting Started**](#-getting-started) · [**Features**](#-features) · [**Examples**](#-examples) · [**Docs**](https://rudra496.github.io/spark/) · [**API**](docs/API.md) · [**Roadmap**](ROADMAP.md) · [**Contributing**](CONTRIBUTING.md)
 
 </div>
 
@@ -33,16 +35,19 @@ Whether you're prototyping a weekend project, building a production system, or c
 
 | Feature | Description |
 |---|---|
-| ⚡ **Zero Bloat** | Ships only what you need — nothing more |
+| ⚡ **Zero Bloat** | Pure Python standard library — no runtime dependencies |
 | 🔌 **Stack-Agnostic** | Works with any language, framework, or runtime |
 | 🛡️ **Security-First** | Responsible disclosure process and dependency hygiene built in |
 | 🤝 **Community-Driven** | Open governance, clear contribution paths, and welcoming community |
 | 📦 **Release-Ready** | Semantic versioning, automated changelogs, and CI/CD workflows |
-| 📚 **Well-Documented** | Architecture docs, examples, FAQ, and a showcase |
+| 📚 **Well-Documented** | Architecture docs, examples, FAQ, and a live docs site |
 | 🧩 **Extensible** | Plugin manager and integration registry for ecosystem growth |
-| 🌐 **i18n Ready** | Built-in message localization helpers |
-| 🎯 **Actionable Assessment** | Maturity scoring with concrete recommendations to improve quality |
-| 🌱 **Growth-Oriented** | Built with onboarding, discoverability, and long-term growth in mind |
+| 🌐 **i18n Ready** | Built-in message localization in English, Spanish, and French |
+| 🎯 **Maturity Scoring** | 0–100 score with concrete strengths and recommendations |
+| 🏷️ **Badge Helpers** | One-call generation of README badge URLs |
+| 🔍 **Smart Discovery** | Language detection, license detection, test count and more |
+| 🩺 **Health Check** | Single `spark health` command for CI-friendly status |
+| 🎨 **Type Safe** | Full `mypy`-compatible annotations throughout |
 
 ---
 
@@ -136,11 +141,14 @@ Spark includes a CLI for daily operations:
 
 ```bash
 python3 -m spark validate --root .
+python3 -m spark validate --root . --locale fr
 python3 -m spark discover --root .
 python3 -m spark assess --root . --json
+python3 -m spark health --root .
 python3 -m spark locales
 python3 -m spark integration-links --owner rudra496 --repo spark
 python3 -m spark scaffold --root . --name spark --description "Toolkit repo"
+python3 -m spark version
 ```
 
 ---
