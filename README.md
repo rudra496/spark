@@ -38,7 +38,7 @@ python -m spark version
 
 ## Documentation
 
-- Live docs: https://rudra496.github.io/spark/
+- [Live docs](https://rudra496.github.io/spark/)
 - API reference: [docs/API.md](docs/API.md)
 - Architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - FAQ: [docs/FAQ.md](docs/FAQ.md)

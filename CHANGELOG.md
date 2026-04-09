@@ -23,8 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SparkProject.discover()` now counts both `.yml` and `.yaml` workflows
 - `SparkProject.discover()` example counting now targets runnable examples instead of all directory entries
 - CI workflow now includes strict docs build and dead-link checks
+- CI dead-link check now uses glob-aware input expansion for docs paths
 - Docs deploy workflow now runs `mkdocs build --strict` before deployment and validates homepage reachability
 - Release preflight now builds package artifacts and verifies wheel install/import
+- README docs URL converted to a Markdown link for markdown-lint compatibility
 
 ## [0.2.0] - 2025-04-09
 

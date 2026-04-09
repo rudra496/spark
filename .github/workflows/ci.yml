@@ -123,7 +123,7 @@ jobs:
       - name: Check links in docs and README
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress README.md docs/**/*.md
+          args: --verbose --no-progress --exclude-mail --glob README.md docs/**/*.md
 
   test:
     name: Python Tests (${{ matrix.python-version }})
