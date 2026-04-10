@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Baseline hardening report at `artifacts/baseline_report.md` including tests, lint/type-check, docs build, CLI smoke, and `spark assess --json`
+- New docs homepage reachability workflow: `.github/workflows/docs-link-check.yml`
+- API docs consistency smoke test (`tests/test_docs_api.py`)
+- Core tests for `.yaml` workflow discovery and runnable example counting semantics
+- CLI regression test ensuring `health` succeeds for `.yaml` workflow repositories
+- Integration input validation tests for blank owner/repo values
+
+### Changed
+
+- Rewrote `docs/getting-started.md` for production onboarding (prerequisites, install, first-run flow, JSON automation, troubleshooting)
+- Simplified README to a concise production-facing format with one canonical CLI section
+- Expanded `docs/API.md` CLI command coverage (including `version`, `health`, and `validate --locale`)
+- `SparkProject.discover()` now counts both `.yml` and `.yaml` workflows
+- `SparkProject.discover()` example counting now targets runnable examples instead of all directory entries
+- CI workflow now includes strict docs build and dead-link checks
+- CI dead-link check now uses glob-aware input expansion for docs paths
+- CI dead-link check argument compatibility fixed for current Lychee CLI
+- Docs deploy workflow now runs `mkdocs build --strict` before deployment and validates homepage reachability
+- Release preflight now builds package artifacts and verifies wheel install/import
+- README docs URL converted to a Markdown link for markdown-lint compatibility
+- `github_links_integration()` now rejects blank owner/repo values and CLI surfaces validation errors cleanly
+
 ## [0.2.0] - 2025-04-09
 
 ### Added

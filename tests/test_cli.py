@@ -123,6 +123,16 @@ class CLITests(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertEqual(payload["issues"], "https://github.com/rudra496/spark/issues")
 
+    def test_integration_links_rejects_blank_inputs(self) -> None:
+        err = io.StringIO()
+        code = run(
+            ["integration-links", "--owner", " ", "--repo", "spark"],
+            stdout=io.StringIO(),
+            stderr=err,
+        )
+        self.assertEqual(code, 1)
+        self.assertIn("Error:", err.getvalue())
+
     def test_version_command(self) -> None:
         out = io.StringIO()
         code = run(["version"], stdout=out, stderr=io.StringIO())
@@ -146,6 +156,33 @@ class CLITests(unittest.TestCase):
                 "docs/SHOWCASE.md",
                 "examples/README.md",
                 ".github/workflows/ci.yml",
+            ):
+                target = root / rel
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text("ok", encoding="utf-8")
+            out = io.StringIO()
+            code = run(["health", "--root", str(root), "--json"], stdout=out, stderr=io.StringIO())
+            payload = json.loads(out.getvalue())
+            self.assertEqual(code, 0)
+            self.assertTrue(payload["healthy"])
+            self.assertTrue(payload["has_workflows"])
+
+    def test_health_healthy_repo_with_yaml_workflow(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            for rel in (
+                "README.md",
+                "CONTRIBUTING.md",
+                "CODE_OF_CONDUCT.md",
+                "SECURITY.md",
+                "SUPPORT.md",
+                "CHANGELOG.md",
+                "ROADMAP.md",
+                "docs/ARCHITECTURE.md",
+                "docs/FAQ.md",
+                "docs/SHOWCASE.md",
+                "examples/README.md",
+                ".github/workflows/ci.yaml",
             ):
                 target = root / rel
                 target.parent.mkdir(parents=True, exist_ok=True)

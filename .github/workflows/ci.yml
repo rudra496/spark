@@ -94,6 +94,37 @@ jobs:
       - name: Run mypy
         run: mypy spark/
 
+  docs-build:
+    name: Docs Build (strict)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install docs tooling
+        run: pip install mkdocs mkdocs-material --quiet
+
+      - name: Build docs
+        run: mkdocs build --strict
+
+  dead-links:
+    name: Dead Link Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check links in docs and README
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress --offline README.md docs/**/*.md
+
   test:
     name: Python Tests (${{ matrix.python-version }})
     runs-on: ubuntu-latest

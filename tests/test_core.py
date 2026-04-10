@@ -26,10 +26,30 @@ class SparkProjectTests(unittest.TestCase):
             (root / ".github" / "workflows").mkdir(parents=True)
             (root / "docs" / "ARCHITECTURE.md").write_text("doc", encoding="utf-8")
             (root / "examples" / "README.md").write_text("example", encoding="utf-8")
+            (root / "examples" / "demo.py").write_text("print('ok')", encoding="utf-8")
             (root / ".github" / "workflows" / "ci.yml").write_text("name: ci", encoding="utf-8")
             payload = SparkProject(root).discover()
             self.assertEqual(payload["docs_count"], 1)
+            self.assertEqual(payload["example_count"], 1)
             self.assertEqual(payload["workflow_count"], 1)
+
+    def test_discover_counts_yaml_workflows(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / ".github" / "workflows").mkdir(parents=True)
+            (root / ".github" / "workflows" / "ci.yaml").write_text("name: ci", encoding="utf-8")
+            payload = SparkProject(root).discover()
+            self.assertEqual(payload["workflow_count"], 1)
+
+    def test_discover_counts_only_runnable_examples(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "examples" / "basic").mkdir(parents=True)
+            (root / "examples" / "README.md").write_text("guide", encoding="utf-8")
+            (root / "examples" / "basic" / "example.py").write_text("print('ok')", encoding="utf-8")
+            (root / "examples" / "basic" / "notes.md").write_text("not runnable", encoding="utf-8")
+            payload = SparkProject(root).discover()
+            self.assertEqual(payload["example_count"], 1)
 
     def test_discover_detects_license_and_tests(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -140,8 +160,9 @@ class SparkProjectTests(unittest.TestCase):
                 "docs/API.md",
                 "docs/I18N.md",
                 "examples/README.md",
-                "examples/basic.md",
-                "examples/advanced.md",
+                "examples/basic.py",
+                "examples/advanced.py",
+                "examples/integrations.py",
                 ".github/workflows/ci.yml",
                 "LICENSE",
                 "tests/test_core.py",

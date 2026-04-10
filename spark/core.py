@@ -9,6 +9,8 @@ from typing import Any
 
 from .plugins import PluginManager
 
+RUNNABLE_EXAMPLE_SUFFIXES = {".py", ".sh", ".js", ".ts", ".go", ".rs"}
+
 DEFAULT_REQUIRED_PATHS = (
     "README.md",
     "CONTRIBUTING.md",
@@ -109,13 +111,27 @@ class SparkProject:
         elif (self.root / "Cargo.toml").exists():
             language = "rust"
 
+        runnable_examples = 0
+        if examples_dir.exists():
+            for path in examples_dir.rglob("*"):
+                if not path.is_file():
+                    continue
+                if path.name.lower().startswith("readme"):
+                    continue
+                if path.suffix in RUNNABLE_EXAMPLE_SUFFIXES:
+                    runnable_examples += 1
+
+        workflow_count = 0
+        if workflows_dir.exists():
+            workflow_count = len(list(workflows_dir.glob("*.yml"))) + len(
+                list(workflows_dir.glob("*.yaml"))
+            )
+
         return {
             "root": str(self.root),
             "docs_count": len(list(docs_dir.glob("*.md"))) if docs_dir.exists() else 0,
-            "example_count": len(list(examples_dir.iterdir())) if examples_dir.exists() else 0,
-            "workflow_count": (
-                len(list(workflows_dir.glob("*.yml"))) if workflows_dir.exists() else 0
-            ),
+            "example_count": runnable_examples,
+            "workflow_count": workflow_count,
             "has_license": license_file is not None,
             "license_file": license_file,
             "test_count": test_count,

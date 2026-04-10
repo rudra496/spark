@@ -7,11 +7,14 @@
   - `discover() -> dict[str, Any]`
   - `assess() -> AssessmentReport`
   - `run_plugins(manager: PluginManager) -> dict[str, dict[str, Any]]`
+  - `badge_urls(owner: str, repo: str) -> dict[str, str]`
 - `scaffold_manifest(root, name, description, version="0.1.0") -> Path`
+- `SparkValidationError`
 - `ValidationReport`
   - `root: Path`
   - `missing_paths: tuple[str, ...]`
   - `is_valid: bool`
+  - `as_dict() -> dict[str, Any]`
 - `AssessmentReport`
   - `root: Path`
   - `score: int`
@@ -19,6 +22,7 @@
   - `strengths: tuple[str, ...]`
   - `recommendations: tuple[str, ...]`
   - `missing_required_paths: tuple[str, ...]`
+  - `as_dict() -> dict[str, Any]`
 
 ## `spark.plugins`
 
@@ -33,8 +37,8 @@
 - `IntegrationRegistry`
   - `register(name, handler)`
   - `run(name, **kwargs)`
-  - `list_integrations()`
-- `github_links_integration(owner, repo)`
+  - `list_integrations() -> tuple[str, ...]`
+- `github_links_integration(owner, repo) -> dict[str, str]`
 
 ## `spark.i18n`
 
@@ -48,9 +52,11 @@
 
 ### CLI Commands
 
-- `spark validate --root <path> [--json]`
+- `spark validate --root <path> [--json] [--locale <en|es|fr>]`
 - `spark discover --root <path>`
-- `spark scaffold --root <path> --name <name> --description <text> [--version <v>]`
 - `spark assess --root <path> [--json]`
+- `spark scaffold --root <path> --name <name> --description <text> [--version <v>]`
 - `spark locales`
 - `spark integration-links --owner <org-or-user> --repo <repo>`
+- `spark version`
+- `spark health --root <path> [--json]`
