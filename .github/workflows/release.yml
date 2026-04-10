@@ -47,7 +47,7 @@ jobs:
           . .venv-release/bin/activate
           python -m pip install --upgrade pip
           python -m pip install dist/*.whl
-          python -c "import spark; print(spark.__version__)"
+          cd /tmp && python -c "import spark; print(spark.__version__)"
 
   release:
     runs-on: ubuntu-latest
