@@ -14,7 +14,7 @@ This guide gets a contributor from clone to successful CLI usage in under 10 min
 git clone https://github.com/rudra496/spark.git
 cd spark
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -e .
 ```
 
@@ -57,6 +57,7 @@ python -m spark health --root . --json | python -c "import json,sys; sys.exit(0 
 ## Troubleshooting
 
 ### `mkdocs: command not found`
+
 Install docs tooling:
 
 ```bash
@@ -64,6 +65,7 @@ pip install mkdocs mkdocs-material
 ```
 
 ### `spark validate` reports missing files
+
 Run discovery to understand current structure:
 
 ```bash
@@ -73,6 +75,7 @@ python -m spark discover --root .
 Then add missing files listed by `validate`.
 
 ### Unexpected locale output
+
 List supported locales and re-run with a valid locale code:
 
 ```bash
@@ -81,6 +84,7 @@ python -m spark validate --root . --locale en
 ```
 
 ### Command not found for `spark`
+
 Use module mode if console scripts are unavailable:
 
 ```bash
