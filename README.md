@@ -1,10 +1,13 @@
-<meta name="description" content="Spark — Lightweight Python toolkit for validating OSS repository structure, assessing project maturity, scaffolding project foundations, and scoring codebase quality. CLI, plugin system, and i18n ready.">
+# ⚡ Spark
 
-# ⚡ Spark — Python Toolkit for OSS Project Validation & Maturity Scoring
+> Python toolkit for validating OSS repository structure,
+> assessing project maturity, and scaffolding foundations.
 
-> **Validate repository structure, score project maturity, and scaffold new foundations — all from your terminal.**
-
-Spark is a lightweight, zero-dependency Python toolkit that helps open-source maintainers and contributors **validate repository structure**, **assess project maturity** with actionable 0–100 scores, **discover metadata**, and **scaffold project foundations**. Built with type safety, i18n, and a plugin system — ready for CI pipelines and developer workflows.
+Spark is a lightweight, zero-dependency Python toolkit that helps
+open-source maintainers **validate repository structure**,
+**assess project maturity** with actionable 0–100 scores,
+**discover metadata**, and **scaffold project foundations**.
+Built with type safety, i18n, and a plugin system.
 
 [![CI](https://github.com/rudra496/spark/actions/workflows/ci.yml/badge.svg)](https://github.com/rudra496/spark/actions/workflows/ci.yml)
 [![Docs](https://img.shields.io/badge/docs-live-blue?logo=readthedocs)](https://rudra496.github.io/spark/)
@@ -154,7 +157,7 @@ MIT — see [LICENSE](LICENSE).
 
 ---
 
-<p align="center">
-  <strong>Built with ❤️ by <a href="https://github.com/rudra496">Rudra Sarker</a></strong><br>
-  <sub>If you find Spark useful, consider giving it a ⭐ on GitHub!</sub>
-</p>
+---
+
+**Built with ❤️ by [Rudra Sarker](https://github.com/rudra496)** —
+if you find Spark useful, consider giving it a ⭐ on GitHub!

@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - README docs URL converted to a Markdown link for markdown-lint compatibility
 - `github_links_integration()` now rejects blank owner/repo values and CLI surfaces validation errors cleanly
 
-## [0.2.0] - 2025-04-09
+## [v0.2.0] - 2025-04-09
 
 ### Added
 

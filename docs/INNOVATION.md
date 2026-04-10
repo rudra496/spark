@@ -1,20 +1,25 @@
 # Innovation in Spark
 
-Spark’s core innovation is turning **repository quality practices** into a **small executable toolkit** instead of only static guidelines.
+Spark's core innovation is turning repository quality
+practices into a small executable toolkit instead of only static guidelines.
 
 ## What is innovative here?
 
-1. **Foundation-as-code**  
-   Required files and repository standards are validated programmatically (`spark validate`).
+1. **Foundation-as-code**
+   Required files and standards validated programmatically
+   (`spark validate`).
 
-2. **Maturity visibility**  
-   Repository health can be scored with actionable next steps (`spark assess`).
+2. **Maturity visibility**
+   Repository health scored with actionable next steps
+   (`spark assess`).
 
-3. **Composable governance**  
-   Plugin and integration APIs allow teams to add organization-specific checks and workflows.
+3. **Composable governance**
+   Plugin and integration APIs let teams add org-specific
+   checks and workflows.
 
-4. **Release discipline by default**  
-   CI and release preflight checks enforce quality and changelog consistency before publishing.
+4. **Release discipline by default**
+   CI and release preflight checks enforce quality and
+   changelog consistency before publishing.
 
 ## What can be done with Spark?
 

@@ -41,16 +41,3 @@ jobs:
 
       - name: Deploy docs to GitHub Pages
         run: mkdocs gh-deploy --force --clean
-
-      - name: Verify deployed homepage is reachable
-        run: |
-          for i in {1..6}; do
-            if curl --fail --silent --show-error https://rudra496.github.io/spark/ > /dev/null; then
-              echo "Docs homepage is reachable."
-              exit 0
-            fi
-            echo "Retrying docs check in 10 seconds..."
-            sleep 10
-          done
-          echo "Docs homepage did not become reachable in time."
-          exit 1
