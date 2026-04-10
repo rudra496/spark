@@ -20,7 +20,7 @@ jobs:
       - name: Run markdown lint
         uses: avto-dev/markdown-lint@v1
         with:
-          args: '**/*.md --ignore artifacts/*.md'
+          args: '**/*.md'
           config: '.markdownlint.json'
 
   validate-files:
