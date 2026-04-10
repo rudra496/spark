@@ -9,7 +9,7 @@ description = "Lightweight toolkit for OSS project foundations"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "rudra496" }]
+authors = [{ name = "Rudra Sarker", email = "rudrasarker130@gmail.com" }]
 keywords = ["spark", "toolkit", "oss", "project-template", "validation"]
 classifiers = [
   "Development Status :: 4 - Beta",

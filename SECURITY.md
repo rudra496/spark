@@ -13,7 +13,7 @@ Please **do not** open a public GitHub issue for security vulnerabilities.
 Instead, report them via:
 
 - **GitHub Private Advisory**: [Report a vulnerability](https://github.com/rudra496/spark/security/advisories/new)
-- **Email**: <security@rudra496.dev>
+- **Email**: <rudrasarker130@gmail.com>
 
 We will respond within **48 hours** and aim to release a fix within **7 days** for critical issues.
 

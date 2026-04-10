@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from spark.integrations import IntegrationRegistry, github_links_integration
+from spark.integrations import IntegrationRegistry, github_links_integration  # noqa: E402
 
 
 def main() -> None:

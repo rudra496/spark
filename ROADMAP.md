@@ -32,13 +32,23 @@
 - [x] `badge_urls()` helper on `SparkProject`
 - [x] `as_dict()` on both report types
 
-## Phase 5 — Scale (Q2 2025+)
+## Phase 5 — Scale (2025)
 
-- [ ] Community showcase
+- [ ] Community showcase and adoption metrics
 - [ ] PyPI release (`pip install spark-toolkit`)
 - [ ] Custom locale file support (user-supplied JSON)
 - [ ] Plugin discovery via entry-points
 - [ ] `spark watch` — live re-validation on file changes
+- [ ] VS Code / editor extension integration
+
+## Phase 6 — Ecosystem (2026+)
+
+- [ ] GitHub Action for automated repo scoring in CI
+- [ ] Web dashboard for comparing project health over time
+- [ ] Organization-level bulk assessment
+- [ ] Integration with GitHub API for real-time repo insights
+- [ ] Community-contributed rule packs and shared configs
+- [ ] Spark Cloud — hosted API for programmatic access
 
 ## How to Influence the Roadmap
 

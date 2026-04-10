@@ -130,4 +130,13 @@ manifest_path = scaffold_manifest(
 
 ---
 
+## About the Author
+
+**Rudra Sarker** is a 3rd-year IPE student at [SUST](https://www.sust.edu), Bangladesh, passionate about open-source software, assistive technology, and developer tooling.
+
+- 💻 [GitHub](https://github.com/rudra496) | 🌐 [Portfolio](https://rudra496.github.io/site) | 💼 [LinkedIn](https://www.linkedin.com/in/rudrasarker)
+- 📧 [rudrasarker130@gmail.com](mailto:rudrasarker130@gmail.com) | 🐦 [@Rudra496](https://x.com/Rudra496)
+
+---
+
 _Made with ❤️ by [@rudra496](https://github.com/rudra496) and [contributors](https://github.com/rudra496/spark/graphs/contributors)_

@@ -1,5 +1,6 @@
 site_name: Spark
-site_description: Lightweight toolkit for OSS project foundations — validate, assess, scaffold, and grow.
+site_author: Rudra Sarker
+site_description: Lightweight Python toolkit for OSS project foundations — validate repository structure, assess project maturity, scaffold new projects, and score codebase quality.
 site_url: https://rudra496.github.io/spark/
 repo_url: https://github.com/rudra496/spark
 repo_name: rudra496/spark
@@ -68,6 +69,12 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/rudra496/spark
+      link: https://github.com/rudra496
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/rudrasarker
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/Rudra496
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@rudrasarker9732
   version:
     provider: mike
