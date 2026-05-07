@@ -157,9 +157,13 @@ class SparkProject:
         # Detect dependency management
         has_lock_file = False
         if language == "python":
-            has_lock_file = (self.root / "poetry.lock").exists() or (self.root / "requirements-lock.txt").exists()
+            has_lock_file = (self.root / "poetry.lock").exists() or (
+                self.root / "requirements-lock.txt"
+            ).exists()
         elif language == "javascript":
-            has_lock_file = (self.root / "package-lock.json").exists() or (self.root / "yarn.lock").exists()
+            has_lock_file = (self.root / "package-lock.json").exists() or (
+                self.root / "yarn.lock"
+            ).exists()
         elif language == "go":
             has_lock_file = (self.root / "go.sum").exists()
         elif language == "rust":
@@ -235,7 +239,9 @@ class SparkProject:
             foundation_score -= min(25, missing_count * 3)
             recommendations.append(f"Add {missing_count} missing required foundation files.")
             if missing_count > 5:
-                warnings.append(f"{missing_count} missing files — repository lacks basic structure.")
+                warnings.append(
+                    f"{missing_count} missing files — repository lacks basic structure."
+                )
 
         category_scores["foundation"] = foundation_score
 
@@ -433,8 +439,8 @@ class SparkProject:
             lines.append("")
             lines.append("## Discovery")
             lines.append("")
-            lines.append(f"| Metric | Value |")
-            lines.append(f"|--------|-------|")
+            lines.append("| Metric | Value |")
+            lines.append("|--------|-------|")
             for key, value in discovery.items():
                 if key == "root":
                     continue
@@ -477,18 +483,60 @@ def scaffold_missing(root: str | Path, required_paths: tuple[str, ...] | None = 
             continue
         full_path.parent.mkdir(parents=True, exist_ok=True)
 
+        _name = root_path.name
         templates: dict[str, str] = {
-            "README.md": f"# {root_path.name}\n\nTODO: Add project description.\n",
-            "CONTRIBUTING.md": "# Contributing\n\nThank you for your interest! Please see the guidelines below.\n\n## Setup\n\n```bash\ngit clone <repo-url>\ncd {root_path.name}\npip install -e .\n```\n\n## Development\n\n1. Create a branch\n2. Make your changes\n3. Add tests\n4. Open a PR\n",
-            "CODE_OF_CONDUCT.md": "# Code of Conduct\n\nBe respectful, constructive, and inclusive.\n",
-            "SECURITY.md": "# Security\n\nReport vulnerabilities via [GitHub Security Advisories](../../security/advisories/new).\n",
-            "SUPPORT.md": "# Support\n\n## Getting Help\n\n- Open a [GitHub Discussion](../../discussions)\n- Check the [FAQ](docs/FAQ.md)\n\n## Reporting Bugs\n\n- Open a [GitHub Issue](../../issues) with reproduction steps\n",
-            "CHANGELOG.md": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\n## [Unreleased]\n\n- Initial project setup\n",
-            "ROADMAP.md": "# Roadmap\n\n## Current Focus\n\n- [ ] Core features\n- [ ] Documentation\n- [ ] Tests\n\n## Future\n\n- [ ] Plugin system\n- [ ] CI/CD improvements\n",
+            "README.md": f"# {_name}\n\nTODO: Add project description.\n",
+            "CONTRIBUTING.md": (
+                "# Contributing\n\n"
+                "Thank you for your interest! Please see the guidelines below.\n\n"
+                "## Setup\n\n"
+                "```bash\ngit clone <repo-url>\n"
+                f"cd {_name}\npip install -e .\n```\n\n"
+                "## Development\n\n"
+                "1. Create a branch\n2. Make your changes\n"
+                "3. Add tests\n4. Open a PR\n"
+            ),
+            "CODE_OF_CONDUCT.md": (
+                "# Code of Conduct\n\n"
+                "Be respectful, constructive, and inclusive.\n"
+            ),
+            "SECURITY.md": (
+                "# Security\n\n"
+                "Report vulnerabilities via "
+                "[GitHub Security Advisories](../../security/advisories/new).\n"
+            ),
+            "SUPPORT.md": (
+                "# Support\n\n## Getting Help\n\n"
+                "- Open a [GitHub Discussion](../../discussions)\n"
+                "- Check the [FAQ](docs/FAQ.md)\n\n"
+                "## Reporting Bugs\n\n"
+                "- Open a [GitHub Issue](../../issues) with reproduction steps\n"
+            ),
+            "CHANGELOG.md": (
+                "# Changelog\n\n"
+                "All notable changes to this project will be documented in this file.\n\n"
+                "## [Unreleased]\n\n- Initial project setup\n"
+            ),
+            "ROADMAP.md": (
+                "# Roadmap\n\n## Current Focus\n\n"
+                "- [ ] Core features\n- [ ] Documentation\n- [ ] Tests\n\n"
+                "## Future\n\n- [ ] Plugin system\n- [ ] CI/CD improvements\n"
+            ),
             "docs/ARCHITECTURE.md": "# Architecture\n\nTODO: Describe system architecture.\n",
-            "docs/FAQ.md": "# FAQ\n\n## General\n\n**Q: How do I install?**\nA: `pip install .`\n\n**Q: How do I contribute?**\nA: See [CONTRIBUTING.md](../CONTRIBUTING.md)\n",
-            "docs/SHOWCASE.md": "# Showcase\n\nProjects using this tool:\n\n- [Your project here]\n",
-            "examples/README.md": "# Examples\n\nBasic usage examples:\n\n```python\n# TODO: Add example\n```\n",
+            "docs/FAQ.md": (
+                "# FAQ\n\n## General\n\n"
+                "**Q: How do I install?**\nA: `pip install .`\n\n"
+                "**Q: How do I contribute?**\n"
+                "A: See [CONTRIBUTING.md](../CONTRIBUTING.md)\n"
+            ),
+            "docs/SHOWCASE.md": (
+                "# Showcase\n\nProjects using this tool:\n\n"
+                "- [Your project here]\n"
+            ),
+            "examples/README.md": (
+                "# Examples\n\nBasic usage examples:\n\n"
+                "```python\n# TODO: Add example\n```\n"
+            ),
         }
 
         content = templates.get(path, f"# {path}\n\nTODO: Add content.\n")

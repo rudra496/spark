@@ -41,7 +41,9 @@ def _build_parser() -> argparse.ArgumentParser:
 
     report = subparsers.add_parser("report", help="Generate a full assessment report")
     report.add_argument("--root", default=".", help="Repository root path")
-    report.add_argument("--format", choices=["markdown", "json"], default="markdown", help="Output format")
+    report.add_argument(
+        "--format", choices=["markdown", "json"], default="markdown", help="Output format",
+    )
 
     subparsers.add_parser("locales", help="List available locales")
 
@@ -85,7 +87,8 @@ def run(
             key = "validation_ok" if report.is_valid else "validation_failed"
             out.write(translate(key, locale=args.locale) + "\n")
             if report.missing_paths:
-                out.write(f"Missing {len(report.missing_paths)}/{report.as_dict().get('total_required', '?')} required files:\n")
+                total = report.as_dict().get("total_required", "?")
+                out.write(f"Missing {len(report.missing_paths)}/{total} required files:\n")
                 for path in report.missing_paths:
                     out.write(f"  - {path}\n")
         return 0 if report.is_valid else 1
@@ -191,7 +194,8 @@ def run(
             out.write(json.dumps(health_payload) + "\n")
         else:
             assessment = project.assess()
-            status = f"Healthy ({assessment.score}/100)" if healthy else f"Unhealthy ({assessment.score}/100)"
+            score_str = f"{assessment.score}/100"
+            status = f"Healthy ({score_str})" if healthy else f"Unhealthy ({score_str})"
             out.write(f"{status}\n")
             if validation.missing_paths:
                 out.write("Missing required files:\n")

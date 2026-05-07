@@ -247,7 +247,10 @@ class CLITests(unittest.TestCase):
     def test_report_json(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             out = io.StringIO()
-            code = run(["report", "--root", temp_dir, "--format", "json"], stdout=out, stderr=io.StringIO())
+            code = run(
+                ["report", "--root", temp_dir, "--format", "json"],
+                stdout=out, stderr=io.StringIO(),
+            )
             self.assertEqual(code, 0)
             payload = json.loads(out.getvalue())
             self.assertIn("score", payload)

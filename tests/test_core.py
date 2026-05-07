@@ -247,7 +247,8 @@ class SparkProjectTests(unittest.TestCase):
     def test_discover_detects_badges(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
-            (root / "README.md").write_text("![CI](https://img.shields.io/badge/test-badge)", encoding="utf-8")
+            badge = "![CI](https://img.shields.io/badge/test-badge)"
+            (root / "README.md").write_text(badge, encoding="utf-8")
             payload = SparkProject(root).discover()
             self.assertTrue(payload["has_badges"])
 
