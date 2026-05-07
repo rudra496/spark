@@ -7,7 +7,6 @@ This page highlights projects built with or inspired by Spark.
 | Project             | Description                                                                         | Link                                                             | Maintainer   |
 | ------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------ |
 | Spark Examples Pack | Official runnable examples for validation, integrations, and configuration patterns | [examples](https://github.com/rudra496/spark/tree/main/examples) | @rudra496    |
-| _Your Project Here_ | Add a short description                                                             | [your-project](https://github.com/your-org/your-project)         | @your-handle |
 
 ## How to Add Your Project
 
