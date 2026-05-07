@@ -21,6 +21,10 @@
 
 ---
 
+<p align="center">
+  <img src="docs/assets/workflow.svg" alt="How Spark Works" width="700">
+</p>
+
 ## Quick Start
 
 ```bash
@@ -105,6 +109,10 @@ print(info["has_license"])  # True / False
 - **Onboarding checklists** — verify new projects have all required files
 
 ---
+
+<p align="center">
+  <img src="docs/assets/architecture.svg" alt="Spark Architecture" width="700">
+</p>
 
 ## Navigation
 
