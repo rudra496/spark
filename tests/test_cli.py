@@ -205,6 +205,71 @@ class CLITests(unittest.TestCase):
         code = run([], stdout=io.StringIO(), stderr=err)
         self.assertEqual(code, 2)
 
+    def test_init_creates_missing_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            out = io.StringIO()
+            code = run(["init", "--root", str(root)], stdout=out, stderr=io.StringIO())
+            self.assertEqual(code, 0)
+            self.assertIn("Created", out.getvalue())
+            self.assertTrue((root / "README.md").exists())
+
+    def test_init_json_output(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out = io.StringIO()
+            code = run(["init", "--root", temp_dir, "--json"], stdout=out, stderr=io.StringIO())
+            self.assertEqual(code, 0)
+            payload = json.loads(out.getvalue())
+            self.assertIn("created", payload)
+            self.assertGreater(payload["count"], 0)
+
+    def test_init_no_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            # Create ALL required files
+            from spark.core import DEFAULT_REQUIRED_PATHS
+            for rel in DEFAULT_REQUIRED_PATHS:
+                target = root / rel
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text("ok", encoding="utf-8")
+            out = io.StringIO()
+            code = run(["init", "--root", str(root)], stdout=out, stderr=io.StringIO())
+            self.assertEqual(code, 0)
+            self.assertIn("already present", out.getvalue())
+
+    def test_report_markdown(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out = io.StringIO()
+            code = run(["report", "--root", temp_dir], stdout=out, stderr=io.StringIO())
+            self.assertEqual(code, 0)
+            self.assertIn("# Spark Assessment", out.getvalue())
+
+    def test_report_json(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out = io.StringIO()
+            code = run(["report", "--root", temp_dir, "--format", "json"], stdout=out, stderr=io.StringIO())
+            self.assertEqual(code, 0)
+            payload = json.loads(out.getvalue())
+            self.assertIn("score", payload)
+            self.assertIn("grade", payload)
+
+    def test_assess_shows_grade(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out = io.StringIO()
+            code = run(["assess", "--root", temp_dir], stdout=out, stderr=io.StringIO())
+            self.assertEqual(code, 0)
+            output = out.getvalue()
+            self.assertRegex(output, r"\d+/100 \([A-F][\+]?\)")
+
+    def test_assess_json_includes_category_scores(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out = io.StringIO()
+            code = run(["assess", "--root", temp_dir, "--json"], stdout=out, stderr=io.StringIO())
+            self.assertEqual(code, 0)
+            payload = json.loads(out.getvalue())
+            self.assertIn("category_scores", payload)
+            self.assertIn("grade", payload)
+
 
 if __name__ == "__main__":
     unittest.main()

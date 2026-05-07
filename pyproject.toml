@@ -4,33 +4,47 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "spark-toolkit"
-version = "0.2.0"
-description = "Lightweight toolkit for OSS project foundations"
+version = "1.0.0"
+description = "Validate, score, and scaffold open-source repository foundations. Zero dependencies."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Rudra Sarker", email = "rudrasarker130@gmail.com" }]
-keywords = ["spark", "toolkit", "oss", "project-template", "validation"]
+authors = [{ name = "Rudra Sarker", email = "rudra496@users.noreply.github.com" }]
+keywords = [
+    "spark", "toolkit", "oss", "project-template", "validation",
+    "repository-health", "maturity-scoring", "scaffolding", "code-quality",
+    "developer-tools", "ci-cd", "repository-management",
+]
 classifiers = [
-  "Development Status :: 4 - Beta",
-  "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
-  "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Topic :: Software Development :: Libraries :: Python Modules",
-  "Topic :: Software Development :: Quality Assurance",
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Quality Assurance",
+    "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+    "mypy>=1.5",
 ]
 
 [project.urls]
 Homepage = "https://rudra496.github.io/spark/"
 Documentation = "https://rudra496.github.io/spark/"
 Repository = "https://github.com/rudra496/spark"
-"Bug Tracker" = "https://github.com/rudra496/spark/issues"
-Changelog = "https://github.com/rudra496/spark/blob/main/CHANGELOG.md"
+Issues = "https://github.com/rudra496/spark/issues"
+Changelog = "https://github.com/rudra496/spark/releases"
 
 [project.scripts]
 spark = "spark.cli:main"
@@ -41,6 +55,7 @@ packages = ["spark"]
 [tool.ruff]
 target-version = "py310"
 line-length = 100
+src = ["spark"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "W"]
@@ -48,14 +63,16 @@ ignore = ["B904"]
 
 [tool.mypy]
 python_version = "3.10"
-disallow_untyped_defs = true
-check_untyped_defs = true
-no_implicit_optional = true
-warn_redundant_casts = true
-warn_unused_ignores = true
+strict = true
 ignore_missing_imports = true
-
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["spark"]
+
+[tool.coverage.report]
+show_missing = true

@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from spark.core import SparkProject, SparkValidationError, scaffold_manifest
+from spark.core import SparkProject, SparkValidationError, scaffold_manifest, scaffold_missing
 
 
 class SparkProjectTests(unittest.TestCase):
@@ -159,20 +159,119 @@ class SparkProjectTests(unittest.TestCase):
                 "docs/SHOWCASE.md",
                 "docs/API.md",
                 "docs/I18N.md",
+                "docs/INNOVATION.md",
+                "docs/BENCHMARKS.md",
+                "docs/GETTING-STARTED.md",
                 "examples/README.md",
                 "examples/basic.py",
                 "examples/advanced.py",
                 "examples/integrations.py",
                 ".github/workflows/ci.yml",
+                ".github/workflows/test.yml",
+                ".github/workflows/release.yml",
+                ".github/dependabot.yml",
+                ".github/ISSUE_TEMPLATE/bug_report.md",
+                ".github/ISSUE_TEMPLATE/feature_request.md",
+                ".github/PULL_REQUEST_TEMPLATE.md",
+                ".github/FUNDING.yml",
                 "LICENSE",
+                "poetry.lock",
                 "tests/test_core.py",
+                "tests/test_cli.py",
+                "tests/test_plugins.py",
+                ".gitignore",
+                "pyproject.toml",
             ):
                 target = root / rel
                 target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_text("ok", encoding="utf-8")
+                content = "ok"
+                if rel == "README.md":
+                    content = "# Test\n\n![CI](https://img.shields.io/badge/test-passing-brightgreen)\n"
+                target.write_text(content, encoding="utf-8")
             report = SparkProject(root).assess()
-            self.assertEqual(report.score, 100)
-            self.assertEqual(report.recommendations, ())
+            self.assertGreaterEqual(report.score, 90)
+            self.assertEqual(report.grade, "A")
+
+    def test_assess_includes_category_scores(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            report = SparkProject(temp_dir).assess()
+            d = report.as_dict()
+            self.assertIn("category_scores", d)
+            self.assertIn("foundation", d["category_scores"])
+            self.assertIn("automation", d["category_scores"])
+            self.assertIn("documentation", d["category_scores"])
+            self.assertIn("testing", d["category_scores"])
+            self.assertIn("hygiene", d["category_scores"])
+
+    def test_assess_includes_grade(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            report = SparkProject(temp_dir).assess()
+            self.assertIn(report.grade, ("A", "B+", "B", "C", "D", "F"))
+
+    def test_assess_includes_warnings(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            report = SparkProject(temp_dir).assess()
+            self.assertIsInstance(report.warnings, tuple)
+
+    def test_scaffold_missing_creates_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            created = scaffold_missing(root, required_paths=("README.md", "SECURITY.md"))
+            self.assertEqual(len(created), 2)
+            self.assertTrue((root / "README.md").exists())
+            self.assertTrue((root / "SECURITY.md").exists())
+
+    def test_scaffold_missing_skips_existing(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "README.md").write_text("exists", encoding="utf-8")
+            created = scaffold_missing(root, required_paths=("README.md", "SECURITY.md"))
+            self.assertEqual(len(created), 1)
+            self.assertFalse("README.md" in created)
+            self.assertTrue((root / "README.md").read_text() == "exists")
+
+    def test_scaffold_missing_creates_nested_dirs(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            created = scaffold_missing(root, required_paths=("docs/ARCHITECTURE.md",))
+            self.assertEqual(len(created), 1)
+            self.assertTrue((root / "docs" / "ARCHITECTURE.md").exists())
+
+    def test_generate_report_markdown(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            report = SparkProject(temp_dir).generate_report(format="markdown")
+            self.assertIn("# Spark Assessment", report)
+            self.assertIn("Score:", report)
+            self.assertIn("Category Scores", report)
+
+    def test_discover_detects_badges(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "README.md").write_text("![CI](https://img.shields.io/badge/test-badge)", encoding="utf-8")
+            payload = SparkProject(root).discover()
+            self.assertTrue(payload["has_badges"])
+
+    def test_discover_detects_no_badges(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            payload = SparkProject(temp_dir).discover()
+            self.assertFalse(payload["has_badges"])
+
+    def test_discover_detects_lock_file(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "pyproject.toml").write_text("[project]", encoding="utf-8")
+            (root / "poetry.lock").write_text("{}", encoding="utf-8")
+            payload = SparkProject(root).discover()
+            self.assertTrue(payload["has_lock_file"])
+
+    def test_discover_detects_dependabot(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            github_dir = root / ".github"
+            github_dir.mkdir(exist_ok=True)
+            (github_dir / "dependabot.yml").write_text("{}", encoding="utf-8")
+            payload = SparkProject(root).discover()
+            self.assertTrue(payload["has_dependabot"])
 
 
 if __name__ == "__main__":

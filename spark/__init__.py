@@ -9,6 +9,7 @@ from .core import (
     SparkValidationError,
     ValidationReport,
     scaffold_manifest,
+    scaffold_missing,
 )
 from .i18n import available_locales, translate
 from .integrations import IntegrationRegistry
@@ -27,5 +28,6 @@ __all__ = [
     "available_locales",
     "translate",
     "scaffold_manifest",
+    "scaffold_missing",
     "run_cli",
 ]
