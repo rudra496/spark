@@ -8,6 +8,7 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
+  custom_dir: overrides
   palette:
     - scheme: default
       primary: deep orange
@@ -50,6 +51,7 @@ nav:
 
 plugins:
   - search
+  - sitemap
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -78,3 +80,5 @@ extra:
       link: https://www.youtube.com/@rudrasarker9732
   version:
     provider: mike
+  meta:
+    keywords: Spark, Python toolkit, OSS validation, repository structure, project maturity, codebase quality, project scaffolding, open source tools, Python CLI, developer tools, lint repository, project health, i18n Python, plugin system Python
