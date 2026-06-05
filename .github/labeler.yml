@@ -1,0 +1,27 @@
+spark:
+  - changed-files:
+      - any-glob-to-any-file: "spark/**"
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file: "tests/**"
+
+benchmarks:
+  - changed-files:
+      - any-glob-to-any-file: "benchmarks/**"
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "docs/**"
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: ".github/workflows/**"
+
+config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "pyproject.toml"
+          - "mkdocs.yml"
