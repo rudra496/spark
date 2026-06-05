@@ -51,7 +51,6 @@ nav:
 
 plugins:
   - search
-  - sitemap
 
 markdown_extensions:
   - pymdownx.highlight:
