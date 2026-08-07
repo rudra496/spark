@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -187,7 +188,11 @@ class SparkProject:
         has_badges = False
         if readme.exists():
             content = readme.read_text(encoding="utf-8", errors="ignore")
-            has_badges = "shields.io" in content or "![Build" in content or "![CI" in content
+            has_badges = (
+                bool(re.search(r"https?://(?:[a-zA-Z0-9-]+\.)*shields\.io[/\s\"'\)]", content))
+                or "![Build" in content
+                or "![CI" in content
+            )
 
         # Detect .gitignore
         has_gitignore = (self.root / ".gitignore").exists()
