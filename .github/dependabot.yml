@@ -1,3 +1,7 @@
+# NOTE: every file in .github/workflows/ must be valid YAML. Dependabot's
+# github-actions updater parses ALL workflow files; a single unparseable file
+# (pr-agent.yml, fixed 2026-09-04) failed every update job with
+# dependency_file_not_parseable.
 version: 2
 updates:
   - package-ecosystem: "github-actions"
